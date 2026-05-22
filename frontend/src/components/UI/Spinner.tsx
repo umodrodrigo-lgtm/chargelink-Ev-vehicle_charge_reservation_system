@@ -1,0 +1,27 @@
+import { Loader2 } from 'lucide-react'
+import { clsx } from 'clsx'
+
+interface SpinnerProps { size?: 'sm' | 'md' | 'lg'; className?: string }
+
+export function Spinner({ size = 'md', className }: SpinnerProps) {
+  return (
+    <Loader2
+      className={clsx('animate-spin text-primary-600', {
+        'w-4 h-4': size === 'sm',
+        'w-6 h-6': size === 'md',
+        'w-8 h-8': size === 'lg',
+      }, className)}
+    />
+  )
+}
+
+export function FullPageSpinner() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-slate-900">
+      <div className="flex flex-col items-center gap-3">
+        <Spinner size="lg" />
+        <p className="text-sm text-gray-500 dark:text-gray-400">Loading…</p>
+      </div>
+    </div>
+  )
+}

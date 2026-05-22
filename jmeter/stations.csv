@@ -1,0 +1,101 @@
+stationName,stationAddress,stationCity,stationState,stationZip,latitude,longitude,openingHours,phoneNumber,country
+ChargeLink Hub 1,12 Galle Road,Colombo,Western,00300,6.9271,79.8612,24/7,+94115550001,Sri Lanka
+ChargeLink Hub 2,45 Duplication Road,Colombo,Western,00400,6.9147,79.8636,6:00 AM - 11:00 PM,+94115550002,Sri Lanka
+ChargeLink Hub 3,78 Baseline Road,Colombo,Western,00900,6.8985,79.8757,7:00 AM - 10:00 PM,+94115550003,Sri Lanka
+ChargeLink Hub 4,150 High Level Road,Maharagama,Western,10280,6.8490,79.9265,24/7,+94115550004,Sri Lanka
+ChargeLink Hub 5,220 Negombo Road,Wattala,Western,11300,6.9900,79.8917,8:00 AM - 9:00 PM,+94115550005,Sri Lanka
+ChargeLink Hub 6,33 Colombo Road,Gampaha,Western,11000,7.0917,79.9999,24/7,+94335550006,Sri Lanka
+ChargeLink Hub 7,88 Ja-Ela Road,Ja-Ela,Western,11350,7.0746,79.8917,6:00 AM - 12:00 AM,+94115550007,Sri Lanka
+ChargeLink Hub 8,140 Kandy Road,Kadawatha,Western,11850,7.0013,79.9585,7:00 AM - 11:00 PM,+94115550008,Sri Lanka
+ChargeLink Hub 9,25 Station Road,Ragama,Western,11010,7.0290,79.9249,24/7,+94115550009,Sri Lanka
+ChargeLink Hub 10,310 Minuwangoda Road,Negombo,Western,11500,7.2083,79.8358,6:00 AM - 10:00 PM,+94315550010,Sri Lanka
+ChargeLink Hub 11,55 Temple Road,Kiribathgoda,Western,11600,6.9769,79.9170,24/7,+94115550011,Sri Lanka
+ChargeLink Hub 12,400 Colombo Road,Katunayake,Western,11450,7.1692,79.8841,7:00 AM - 10:00 PM,+94315550012,Sri Lanka
+ChargeLink Hub 13,66 Parliament Road,Battaramulla,Western,10120,6.9022,79.9187,6:00 AM - 11:00 PM,+94115550013,Sri Lanka
+ChargeLink Hub 14,120 Hospital Road,Dehiwala,Western,10350,6.8518,79.8650,24/7,+94115550014,Sri Lanka
+ChargeLink Hub 15,275 Galle Road,Mount Lavinia,Western,10370,6.8389,79.8636,8:00 AM - 11:00 PM,+94115550015,Sri Lanka
+ChargeLink Hub 16,99 New Kandy Road,Malabe,Western,10115,6.9061,79.9570,24/7,+94115550016,Sri Lanka
+ChargeLink Hub 17,145 Main Street,Kesbewa,Western,10300,6.7953,79.9412,7:00 AM - 9:00 PM,+94115550017,Sri Lanka
+ChargeLink Hub 18,18 Beach Road,Hendala,Western,11300,6.9908,79.8701,24/7,+94115550018,Sri Lanka
+ChargeLink Hub 19,250 Aviation Road,Seeduwa,Western,11410,7.1300,79.8853,6:00 AM - 10:00 PM,+94115550019,Sri Lanka
+ChargeLink Hub 20,77 Biyagama Road,Peliyagoda,Western,11640,6.9681,79.8836,24/7,+94115550020,Sri Lanka
+ChargeLink Hub 21,45 Temple Street,Kandy,Central,20000,7.2906,80.6337,24/7,+94815550021,Sri Lanka
+ChargeLink Hub 22,120 Peradeniya Road,Kandy,Central,20000,7.2803,80.6350,6:00 AM - 10:00 PM,+94815550022,Sri Lanka
+ChargeLink Hub 23,88 D.S. Senanayake Veediya,Kandy,Central,20000,7.2964,80.6355,7:00 AM - 11:00 PM,+94815550023,Sri Lanka
+ChargeLink Hub 24,34 Colombo Street,Kandy,Central,20000,7.2930,80.6413,24/7,+94815550024,Sri Lanka
+ChargeLink Hub 25,77 Hill Street,Nuwara Eliya,Central,22200,6.9497,80.7891,8:00 AM - 10:00 PM,+94525550025,Sri Lanka
+ChargeLink Hub 26,101 Queen Elizabeth Drive,Nuwara Eliya,Central,22200,6.9680,80.7690,24/7,+94525550026,Sri Lanka
+ChargeLink Hub 27,210 Main Road,Matale,Central,21000,7.4675,80.6234,6:00 AM - 9:00 PM,+94665550027,Sri Lanka
+ChargeLink Hub 28,90 Lake Road,Dambulla,Central,21100,7.8731,80.6511,24/7,+94665550028,Sri Lanka
+ChargeLink Hub 29,66 Sigiriya Road,Sigiriya,Central,21120,7.9570,80.7603,7:00 AM - 10:00 PM,+94665550029,Sri Lanka
+ChargeLink Hub 30,15 Station Road,Hatton,Central,22000,6.8916,80.5955,24/7,+94515550030,Sri Lanka
+ChargeLink Hub 31,45 Main Street,Galle,Southern,80000,6.0329,80.2168,24/7,+94915550031,Sri Lanka
+ChargeLink Hub 32,88 Matara Road,Galle,Southern,80000,6.0215,80.2170,7:00 AM - 10:00 PM,+94915550032,Sri Lanka
+ChargeLink Hub 33,120 Beach Road,Unawatuna,Southern,80600,6.0108,80.2499,8:00 AM - 11:00 PM,+94915550033,Sri Lanka
+ChargeLink Hub 34,50 Tangalle Road,Matara,Southern,81000,5.9549,80.5540,24/7,+94415550034,Sri Lanka
+ChargeLink Hub 35,75 Lighthouse Road,Hambantota,Southern,82000,6.1241,81.1185,6:00 AM - 10:00 PM,+94475550035,Sri Lanka
+ChargeLink Hub 36,22 Harbour Road,Tangalle,Southern,82200,6.0243,80.7974,24/7,+94475550036,Sri Lanka
+ChargeLink Hub 37,140 Main Street,Weligama,Southern,81700,5.9730,80.4297,7:00 AM - 9:00 PM,+94415550037,Sri Lanka
+ChargeLink Hub 38,190 Galle Road,Hikkaduwa,Southern,80240,6.1408,80.1010,24/7,+94915550038,Sri Lanka
+ChargeLink Hub 39,88 Nilwala Road,Akuressa,Southern,81400,6.1040,80.4800,6:00 AM - 10:00 PM,+94415550039,Sri Lanka
+ChargeLink Hub 40,10 Main Street,Ambalangoda,Southern,80300,6.2355,80.0536,24/7,+94915550040,Sri Lanka
+ChargeLink Hub 41,12 Main Street,Anuradhapura,North Central,50000,8.3114,80.4037,24/7,+94255550041,Sri Lanka
+ChargeLink Hub 42,90 Sacred City Road,Anuradhapura,North Central,50000,8.3450,80.4100,7:00 AM - 10:00 PM,+94255550042,Sri Lanka
+ChargeLink Hub 43,45 Temple Road,Polonnaruwa,North Central,51000,7.9403,81.0188,24/7,+94275550043,Sri Lanka
+ChargeLink Hub 44,110 Main Street,Kurunegala,North Western,60000,7.4863,80.3647,6:00 AM - 10:00 PM,+94375550044,Sri Lanka
+ChargeLink Hub 45,76 Colombo Road,Kurunegala,North Western,60000,7.4780,80.3600,24/7,+94375550045,Sri Lanka
+ChargeLink Hub 46,88 Chilaw Road,Puttalam,North Western,61300,8.0362,79.8283,7:00 AM - 9:00 PM,+94325550046,Sri Lanka
+ChargeLink Hub 47,25 Lagoon Road,Kalpitiya,North Western,61360,8.2333,79.7667,24/7,+94325550047,Sri Lanka
+ChargeLink Hub 48,140 Main Road,Chilaw,North Western,61000,7.5758,79.7953,6:00 AM - 11:00 PM,+94325550048,Sri Lanka
+ChargeLink Hub 49,55 Beach Road,Marawila,North Western,61210,7.4330,79.8258,24/7,+94315550049,Sri Lanka
+ChargeLink Hub 50,10 Market Street,Narammala,North Western,60100,7.4333,80.2167,7:00 AM - 10:00 PM,+94375550050,Sri Lanka
+ChargeLink Hub 51,12 Clock Tower Road,Jaffna,Northern,40000,9.6615,80.0255,24/7,+94215550051,Sri Lanka
+ChargeLink Hub 52,90 KKS Road,Jaffna,Northern,40000,9.6680,80.0200,7:00 AM - 10:00 PM,+94215550052,Sri Lanka
+ChargeLink Hub 53,55 Main Street,Kilinochchi,Northern,44000,9.3961,80.3982,24/7,+94215550053,Sri Lanka
+ChargeLink Hub 54,44 Hospital Road,Vavuniya,Northern,43000,8.7514,80.4971,6:00 AM - 9:00 PM,+94245550054,Sri Lanka
+ChargeLink Hub 55,120 Beach Road,Mannar,Northern,41000,8.9770,79.9040,24/7,+94235550055,Sri Lanka
+ChargeLink Hub 56,88 Main Street,Mullaitivu,Northern,42000,9.2671,80.8142,7:00 AM - 10:00 PM,+94215550056,Sri Lanka
+ChargeLink Hub 57,66 Point Pedro Road,Point Pedro,Northern,41300,9.8167,80.2333,24/7,+94215550057,Sri Lanka
+ChargeLink Hub 58,25 Harbour Road,Kankesanthurai,Northern,41800,9.8160,80.0410,6:00 AM - 10:00 PM,+94215550058,Sri Lanka
+ChargeLink Hub 59,99 Main Street,Chavakachcheri,Northern,40500,9.6610,80.1570,24/7,+94215550059,Sri Lanka
+ChargeLink Hub 60,11 Temple Road,Velanai,Northern,40170,9.6550,79.9040,7:00 AM - 9:00 PM,+94215550060,Sri Lanka
+ChargeLink Hub 61,22 Main Street,Batticaloa,Eastern,30000,7.7102,81.6924,24/7,+94655550061,Sri Lanka
+ChargeLink Hub 62,88 Trinco Road,Batticaloa,Eastern,30000,7.7200,81.7000,7:00 AM - 10:00 PM,+94655550062,Sri Lanka
+ChargeLink Hub 63,45 Harbour Road,Trincomalee,Eastern,31000,8.5874,81.2152,24/7,+94265550063,Sri Lanka
+ChargeLink Hub 64,77 Main Street,Kalmunai,Eastern,32300,7.4167,81.8167,6:00 AM - 11:00 PM,+94675550064,Sri Lanka
+ChargeLink Hub 65,120 Beach Road,Pasikudah,Eastern,30410,7.9280,81.5610,24/7,+94655550065,Sri Lanka
+ChargeLink Hub 66,50 Main Road,Ampara,Eastern,32000,7.2917,81.6722,7:00 AM - 9:00 PM,+94635550066,Sri Lanka
+ChargeLink Hub 67,90 Lagoon Road,Arugam Bay,Eastern,32500,6.8404,81.8368,24/7,+94635550067,Sri Lanka
+ChargeLink Hub 68,18 Temple Road,Eravur,Eastern,30300,7.7667,81.6000,6:00 AM - 10:00 PM,+94655550068,Sri Lanka
+ChargeLink Hub 69,33 Main Street,Akkaraipattu,Eastern,32400,7.2167,81.8500,24/7,+94675550069,Sri Lanka
+ChargeLink Hub 70,75 Market Road,Sainthamaruthu,Eastern,32300,7.3833,81.8333,7:00 AM - 10:00 PM,+94675550070,Sri Lanka
+ChargeLink Hub 71,12 Main Street,Ratnapura,Sabaragamuwa,70000,6.6828,80.3992,24/7,+94455550071,Sri Lanka
+ChargeLink Hub 72,44 Gem Road,Ratnapura,Sabaragamuwa,70000,6.6900,80.4050,7:00 AM - 10:00 PM,+94455550072,Sri Lanka
+ChargeLink Hub 73,90 Main Street,Kegalle,Sabaragamuwa,71000,7.2513,80.3464,24/7,+94355550073,Sri Lanka
+ChargeLink Hub 74,55 Colombo Road,Balangoda,Sabaragamuwa,70100,6.6615,80.6930,6:00 AM - 10:00 PM,+94455550074,Sri Lanka
+ChargeLink Hub 75,18 Temple Road,Embilipitiya,Sabaragamuwa,70200,6.3419,80.8480,24/7,+94475550075,Sri Lanka
+ChargeLink Hub 76,140 Main Street,Pelmadulla,Sabaragamuwa,70070,6.6200,80.5400,7:00 AM - 9:00 PM,+94455550076,Sri Lanka
+ChargeLink Hub 77,22 Market Road,Eheliyagoda,Sabaragamuwa,70600,6.8500,80.2667,24/7,+94365550077,Sri Lanka
+ChargeLink Hub 78,66 Main Street,Kalawana,Sabaragamuwa,70450,6.5333,80.4000,6:00 AM - 10:00 PM,+94455550078,Sri Lanka
+ChargeLink Hub 79,88 Temple Road,Kahawatta,Sabaragamuwa,70150,6.7167,80.4167,24/7,+94455550079,Sri Lanka
+ChargeLink Hub 80,10 Main Road,Godakawela,Sabaragamuwa,70160,6.5167,80.7500,7:00 AM - 10:00 PM,+94455550080,Sri Lanka
+ChargeLink Hub 81,15 Main Street,Badulla,Uva,90000,6.9934,81.0550,24/7,+94555550081,Sri Lanka
+ChargeLink Hub 82,66 Bandarawela Road,Badulla,Uva,90000,7.0000,81.0600,7:00 AM - 10:00 PM,+94555550082,Sri Lanka
+ChargeLink Hub 83,44 Main Road,Bandarawela,Uva,90100,6.8280,80.9880,24/7,+94575550083,Sri Lanka
+ChargeLink Hub 84,90 Temple Road,Ella,Uva,90090,6.8667,81.0466,6:00 AM - 11:00 PM,+94575550084,Sri Lanka
+ChargeLink Hub 85,120 Main Street,Monaragala,Uva,91000,6.8728,81.3507,24/7,+94555550085,Sri Lanka
+ChargeLink Hub 86,25 Market Road,Wellawaya,Uva,91200,6.7369,81.1028,7:00 AM - 9:00 PM,+94555550086,Sri Lanka
+ChargeLink Hub 87,77 Temple Road,Haputale,Uva,90160,6.7650,80.9510,24/7,+94575550087,Sri Lanka
+ChargeLink Hub 88,50 Main Street,Mahiyanganaya,Uva,90700,7.3167,81.0000,6:00 AM - 10:00 PM,+94555550088,Sri Lanka
+ChargeLink Hub 89,22 Main Road,Bibile,Uva,91500,7.1667,81.2167,24/7,+94555550089,Sri Lanka
+ChargeLink Hub 90,18 Temple Street,Passara,Uva,90500,6.9333,81.1500,7:00 AM - 10:00 PM,+94555550090,Sri Lanka
+ChargeLink Hub 91,10 Main Street,Panadura,Western,12500,6.7132,79.9026,24/7,+94385550091,Sri Lanka
+ChargeLink Hub 92,55 Galle Road,Kalutara,Western,12000,6.5854,79.9607,7:00 AM - 10:00 PM,+94345550092,Sri Lanka
+ChargeLink Hub 93,140 Main Road,Beruwala,Western,12070,6.4788,79.9828,24/7,+94345550093,Sri Lanka
+ChargeLink Hub 94,88 Beach Road,Bentota,Western,80500,6.4218,79.9950,6:00 AM - 11:00 PM,+94345550094,Sri Lanka
+ChargeLink Hub 95,22 Temple Road,Horana,Western,12400,6.7152,80.0626,24/7,+94345550095,Sri Lanka
+ChargeLink Hub 96,75 Main Street,Avissawella,Western,10700,6.9553,80.2110,7:00 AM - 9:00 PM,+94365550096,Sri Lanka
+ChargeLink Hub 97,33 Colombo Road,Homagama,Western,10200,6.8440,80.0024,24/7,+94115550097,Sri Lanka
+ChargeLink Hub 98,90 Kaduwela Road,Kaduwela,Western,10640,6.9350,79.9840,6:00 AM - 10:00 PM,+94115550098,Sri Lanka
+ChargeLink Hub 99,120 Main Street,Piliyandala,Western,10306,6.8018,79.9227,24/7,+94115550099,Sri Lanka
+ChargeLink Hub 100,66 Beach Road,Aluthgama,Western,12080,6.4344,79.9963,7:00 AM - 10:00 PM,+94345550100,Sri Lanka

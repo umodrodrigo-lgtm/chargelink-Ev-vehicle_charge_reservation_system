@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Reads logging.file.path from application.yml; default to ./logs in dev -->
+    <springProperty scope="context" name="LOG_DIR" source="logging.file.path" defaultValue="logs"/>
+
+    <property name="APP_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"/>
+    <property name="EVT_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %msg%n"/>
+
+    <!-- ── Console: INFO+ only ──────────────────────────────────────────── -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>${APP_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ── app.log: INFO/WARN/ERROR from all code, 30-day rolling ──────── -->
+    <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/app.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>50MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder><pattern>${APP_PATTERN}</pattern></encoder>
+    </appender>
+
+    <!-- ── auth.log: register, login, logout, token events ─────────────── -->
+    <appender name="AUTH_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/auth.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/auth.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>90</maxHistory>
+            <totalSizeCap>300MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder><pattern>${EVT_PATTERN}</pattern></encoder>
+    </appender>
+
+    <!-- ── reservations.log: created, cancelled, activated, completed ───── -->
+    <appender name="RESERVATION_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/reservations.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/reservations.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>90</maxHistory>
+            <totalSizeCap>300MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder><pattern>${EVT_PATTERN}</pattern></encoder>
+    </appender>
+
+    <!-- ── chargers.log: created, status changes, deleted ───────────────── -->
+    <appender name="CHARGER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/chargers.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/chargers.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>90</maxHistory>
+            <totalSizeCap>300MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder><pattern>${EVT_PATTERN}</pattern></encoder>
+    </appender>
+
+    <!-- ── security.log: JWT failures, bad credentials — 1 year ────────── -->
+    <appender name="SECURITY_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/security.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/security.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>365</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder><pattern>${EVT_PATTERN}</pattern></encoder>
+    </appender>
+
+    <!-- ── admin.log: station/charger management, user toggles — 1 year ── -->
+    <appender name="ADMIN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/admin.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/admin.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>365</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder><pattern>${EVT_PATTERN}</pattern></encoder>
+    </appender>
+
+    <!-- ── Event loggers: additivity=false keeps them out of app.log ───── -->
+    <logger name="chargelink.events.auth"        level="INFO" additivity="false">
+        <appender-ref ref="AUTH_FILE"/>
+    </logger>
+    <logger name="chargelink.events.reservation" level="INFO" additivity="false">
+        <appender-ref ref="RESERVATION_FILE"/>
+    </logger>
+    <logger name="chargelink.events.charger"     level="INFO" additivity="false">
+        <appender-ref ref="CHARGER_FILE"/>
+    </logger>
+    <logger name="chargelink.events.security"    level="INFO" additivity="false">
+        <appender-ref ref="SECURITY_FILE"/>
+    </logger>
+    <logger name="chargelink.events.admin"       level="INFO" additivity="false">
+        <appender-ref ref="ADMIN_FILE"/>
+    </logger>
+
+    <!-- Suppress framework noise from app.log -->
+    <logger name="org.hibernate.SQL"                level="WARN"/>
+    <logger name="org.hibernate.orm.jdbc.bind"      level="WARN"/>
+    <logger name="org.springframework.security"     level="WARN"/>
+    <logger name="org.springframework.web"          level="WARN"/>
+
+    <!-- ── Root: INFO+ to console + app file ────────────────────────────── -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APP_FILE"/>
+    </root>
+
+    <!-- Enable DEBUG for our own code in dev (any profile except prod) -->
+    <springProfile name="!prod">
+        <logger name="com.chargelink" level="DEBUG"/>
+    </springProfile>
+
+</configuration>
