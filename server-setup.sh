@@ -182,24 +182,105 @@ NGINX
 
 sudo nginx -t && sudo systemctl enable nginx && sudo systemctl restart nginx
 
+# ─── 9. Staging directory + deploy script ────────────────────────────────────
+log "Creating staging directory and installing deploy script..."
+STAGING_DIR="/home/ec2-user/chargelink"
+mkdir -p "$STAGING_DIR"
+chmod 700 "$STAGING_DIR"
+
+cat > "$STAGING_DIR/deploy.sh" << 'DEPLOY_EOF'
+#!/bin/bash
+# deploy.sh — run on EC2 after uploading artifacts to ~/chargelink/
+# Required files: chargelink-backend.jar  and  dist.tar.gz
+set -euo pipefail
+
+STAGING="$HOME/chargelink"
+APP_DIR="/opt/chargelink"
+WEB_DIR="/var/www/chargelink"
+SERVICE="chargelink-backend"
+JAR="chargelink-backend.jar"
+DIST="dist.tar.gz"
+
+log()  { printf '\n>>> %s\n' "$*"; }
+fail() { printf '\n[ERROR] %s\n' "$*" >&2; exit 1; }
+
+log "Validating uploaded artifacts..."
+[[ -f "$STAGING/$JAR"  ]] || fail "$JAR not found in $STAGING/ — upload it first"
+[[ -f "$STAGING/$DIST" ]] || fail "$DIST not found in $STAGING/ — upload it first"
+[[ -s "$STAGING/$JAR"  ]] || fail "$JAR is empty (upload may have failed)"
+[[ -s "$STAGING/$DIST" ]] || fail "$DIST is empty (upload may have failed)"
+tar -tzf "$STAGING/$DIST" &>/dev/null || fail "$DIST is corrupt or not a valid tar.gz"
+
+if [[ -f "$APP_DIR/$JAR" ]]; then
+    sudo cp "$APP_DIR/$JAR" "$APP_DIR/${JAR}.bak"
+    log "Previous JAR backed up -> ${JAR}.bak"
+fi
+
+log "Deploying backend JAR..."
+sudo cp    "$STAGING/$JAR" "$APP_DIR/$JAR"
+sudo chown chargelink:chargelink "$APP_DIR/$JAR"
+sudo chmod 640               "$APP_DIR/$JAR"
+
+log "Deploying frontend..."
+sudo rm    -rf "$WEB_DIR"
+sudo mkdir -p  "$WEB_DIR"
+sudo tar   -xzf "$STAGING/$DIST" -C "$WEB_DIR" --strip-components=1
+sudo chown -R   nginx:nginx "$WEB_DIR"
+sudo chmod -R   755         "$WEB_DIR"
+
+log "Restarting $SERVICE..."
+sudo systemctl restart "$SERVICE"
+
+log "Waiting for backend to start..."
+for i in $(seq 1 12); do
+    if curl -sf http://localhost:8080/api/actuator/health 2>/dev/null | grep -q '"UP"'; then
+        PUBLIC_IP=$(curl -sf http://169.254.169.254/latest/meta-data/public-ipv4 2>/dev/null || echo "<server-ip>")
+        rm -f "$STAGING/$JAR" "$STAGING/$DIST"
+        printf '\n========================================\n'
+        printf '  Deploy complete!\n'
+        printf '  https://%s\n' "$PUBLIC_IP"
+        printf '========================================\n\n'
+        exit 0
+    fi
+    printf '  Waiting... (%ds)\n' "$((i * 5))"
+    sleep 5
+done
+
+log "Health check failed — attempting rollback..."
+if [[ -f "$APP_DIR/${JAR}.bak" ]]; then
+    sudo cp "$APP_DIR/${JAR}.bak" "$APP_DIR/$JAR"
+    sudo systemctl restart "$SERVICE"
+    log "Rolled back to previous JAR."
+fi
+fail "Backend did not start.\n  Logs: sudo journalctl -u $SERVICE -n 50 --no-pager"
+DEPLOY_EOF
+
+chmod 750 "$STAGING_DIR/deploy.sh"
+log "Staging directory ready: $STAGING_DIR"
+
 # ─── Done ────────────────────────────────────────────────────────────────────
 PUBLIC_IP=$(curl -sf http://169.254.169.254/latest/meta-data/public-ipv4 2>/dev/null || echo "<YOUR-IP>")
 echo ""
 echo "========================================================"
 echo "  Server setup complete!"
 echo ""
-echo "  Make sure your domain DNS A record points to: $PUBLIC_IP"
+echo "  DNS: point $PUBLIC_IP to chargelink.limalshaumod.online"
 echo ""
-echo "  Upload your built files from Windows:"
+echo "  ── Deployment workflow ─────────────────────────────"
 echo ""
-echo "  1. JAR:"
-echo "     scp -i new-key.pem chargelink-backend-1.0.0.jar \\"
-echo "         ec2-user@$PUBLIC_IP:/tmp/chargelink-backend.jar"
-echo ""
-echo "  2. Frontend dist:"
+echo "  1. Build locally:"
+echo "     cd backend && ./mvnw clean package -DskipTests && cd .."
+echo "     cd frontend && npm run build && cd .."
 echo "     tar -czf dist.tar.gz -C frontend dist"
-echo "     scp -i new-key.pem dist.tar.gz \\"
-echo "         ec2-user@$PUBLIC_IP:/tmp/chargelink-dist.tar.gz"
 echo ""
-echo "  App will be at: http://chargelink.limalshaumod.online"
+echo "  2. Upload artifacts to staging:"
+echo "     scp -i /path/to/key.pem backend/target/chargelink-backend-1.0.0.jar \\"
+echo "         ec2-user@$PUBLIC_IP:~/chargelink/chargelink-backend.jar"
+echo "     scp -i /path/to/key.pem dist.tar.gz \\"
+echo "         ec2-user@$PUBLIC_IP:~/chargelink/dist.tar.gz"
+echo ""
+echo "  3. Deploy:"
+echo "     ssh -i /path/to/key.pem ec2-user@$PUBLIC_IP 'bash ~/chargelink/deploy.sh'"
+echo ""
+echo "  App: https://chargelink.limalshaumod.online"
 echo "========================================================"
