@@ -1,0 +1,101 @@
+services:
+
+  # ── PostgreSQL ───────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: chargelink-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       chargelink
+      POSTGRES_USER:     ${DB_USERNAME:-chargelink}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-chargelink_dev}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-chargelink} -d chargelink"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Redis ────────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: chargelink-redis
+    restart: unless-stopped
+    command: >
+      sh -c '
+        if [ -n "$$REDIS_PASSWORD" ]; then
+          redis-server --requirepass "$$REDIS_PASSWORD" --save 20 1 --loglevel warning
+        else
+          redis-server --save 20 1 --loglevel warning
+        fi
+      '
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-}
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: >
+        sh -c '
+          if [ -n "$$REDIS_PASSWORD" ]; then
+            redis-cli -a "$$REDIS_PASSWORD" ping
+          else
+            redis-cli ping
+          fi
+        '
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Rocky Linux 9 — Spring Boot + nginx ──────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chargelink-app
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/chargelink
+      DB_USERNAME:           ${DB_USERNAME:-chargelink}
+      DB_PASSWORD:           ${DB_PASSWORD:-chargelink_dev}
+      REDIS_HOST:            redis
+      REDIS_PORT:            6379
+      REDIS_PASSWORD:        ${REDIS_PASSWORD:-}
+      JWT_SECRET:            ${JWT_SECRET:-TXlTdXBlclNlY3JldEtleUZvckNoYXJnZUxpbmtBcHBsaWNhdGlvbjIwMjQ=}
+      CORS_ORIGINS:          ${CORS_ORIGINS:-http://localhost,http://localhost:3000}
+      LOG_DIR:               /var/log/chargelink
+    volumes:
+      - app_logs:/var/log/chargelink
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # ── Rocky Linux 9 Admin Shell ─────────────────────────────────────────────────
+  devbox:
+    build:
+      context: ./devbox
+      dockerfile: Dockerfile
+    container_name: chargelink-admin
+    restart: unless-stopped
+    environment:
+      DB_USERNAME:    ${DB_USERNAME:-chargelink}
+      DB_PASSWORD:    ${DB_PASSWORD:-chargelink_dev}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-}
+    volumes:
+      - app_logs:/var/log/chargelink
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      app:
+        condition: service_started
+
+volumes:
+  postgres_data:
+  redis_data:
+  app_logs:

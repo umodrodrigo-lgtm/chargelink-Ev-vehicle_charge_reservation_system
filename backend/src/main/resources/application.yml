@@ -63,7 +63,7 @@ app:
 
 logging:
   file:
-    path: ${LOG_DIR:logs}
+    path: ${LOG_DIR:/var/log/chargelink}
   level:
     com.chargelink: DEBUG
 

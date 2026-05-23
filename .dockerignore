@@ -1,0 +1,14 @@
+.git/
+devbox/
+jmeter/
+target/
+frontend/node_modules/
+frontend/dist/
+backend/target/
+backend/logs/
+*.log
+.env
+.env.local
+.vscode/
+*.md
+*.ps1
