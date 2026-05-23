@@ -47,15 +47,15 @@ services:
       timeout: 5s
       retries: 5
 
-  # ── Rocky Linux 9 — Spring Boot + nginx ──────────────────────────────────────
-  app:
+  # ── Backend — Rocky Linux 9 + Spring Boot ────────────────────────────────────
+  backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
-    container_name: chargelink-app
+    container_name: chargelink-backend
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/chargelink
       DB_USERNAME:           ${DB_USERNAME:-chargelink}
@@ -67,12 +67,25 @@ services:
       CORS_ORIGINS:          ${CORS_ORIGINS:-http://localhost,http://localhost:3000}
       LOG_DIR:               /var/log/chargelink
     volumes:
-      - app_logs:/var/log/chargelink
+      - backend_logs:/var/log/chargelink
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
+
+  # ── Frontend — Rocky Linux 9 + nginx ─────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: chargelink-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_started
 
   # ── Rocky Linux 9 Admin Shell ─────────────────────────────────────────────────
   devbox:
@@ -86,16 +99,16 @@ services:
       DB_PASSWORD:    ${DB_PASSWORD:-chargelink_dev}
       REDIS_PASSWORD: ${REDIS_PASSWORD:-}
     volumes:
-      - app_logs:/var/log/chargelink
+      - backend_logs:/var/log/chargelink
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
-      app:
+      backend:
         condition: service_started
 
 volumes:
   postgres_data:
   redis_data:
-  app_logs:
+  backend_logs:

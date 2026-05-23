@@ -29,8 +29,8 @@ LOG=/var/log/chargelink
 
 # ── Service checks ─────────────────────────────────────────────────────────────
 alias ll='ls -lahF --color=auto'
-alias check-api='curl -s http://app/api/actuator/health | jq .'
-alias check-swagger='curl -s http://app/api/v3/api-docs | jq "[.paths | keys[]]"'
+alias check-api='curl -s http://backend:8080/api/actuator/health | jq .'
+alias check-swagger='curl -s http://backend:8080/api/v3/api-docs | jq "[.paths | keys[]]"'
 alias check-db='PGPASSWORD="${DB_PASSWORD:-chargelink_dev}" psql -h postgres -U "${DB_USERNAME:-chargelink}" -d chargelink'
 alias check-redis='redis-cli -h redis ${REDIS_PASSWORD:+-a "$REDIS_PASSWORD"} ping'
 
